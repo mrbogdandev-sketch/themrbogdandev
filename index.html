@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MrBogdanDev — Портфолио</title>
+<style>
+:root {
+  --bg: #000;
+  --accent: #fff;
+  --muted: #bfbfbf;
+  --glass: rgba(255,255,255,0.07);
+  --radius: 22px;
+  --transition-fast: 0.35s;
+}
+* {margin:0; padding:0; box-sizing:border-box;}
+body {background: var(--bg); color: var(--accent); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden;}
+.wrap {width: 90%; max-width: 1200px; margin: 0 auto; position: relative; z-index:1;}
+
+/* Topbar */
+.topbar {position: fixed; top: 12px; left:0; right:0; display: flex; justify-content:center; pointer-events:none; z-index:999;}
+.topbar .inner {pointer-events:all; width: 90%; max-width: 1200px; background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border-radius: var(--radius); padding: 12px 20px; display: flex; align-items:center; justify-content: space-between; backdrop-filter: blur(14px); border:1px solid rgba(255,255,255,0.05); box-shadow:0 8px 30px rgba(255,255,255,0.03); transition: all 0.4s ease;}
+.brand {display:flex; align-items:center; gap:12px;}
+.brand .logo {width:50px; height:50px; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.05); background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.06)); display:flex; justify-content:center; align-items:center; transition: all 0.3s ease;}
+.brand .logo img {width:100%; height:100%; object-fit:cover;}
+.brand .title {font-weight:800; letter-spacing:1px; font-size:18px;}
+.brand .logo:hover {transform: rotate(-5deg) scale(1.05);}
+
+/* Hero */
+.hero {margin-top:110px; display:grid; grid-template-columns:1fr 420px; gap:40px; align-items:center;}
+.hero-left h1 {font-size: 56px; margin-bottom:12px; letter-spacing:1.2px;}
+.hero-left .subtitle {color:var(--muted); font-size:20px; margin-bottom:22px;}
+.tagline {font-size:16px; color:#d7d7d7; margin-bottom:25px; line-height:1.6;}
+.btn {background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); padding:14px 20px; border-radius:16px; border:1px solid rgba(255,255,255,0.05); font-weight:600; text-decoration:none; color:var(--accent); display:inline-flex; align-items:center; gap:10px; transition: all 0.35s ease;}
+.btn:hover {transform:translateY(-4px) scale(1.05); box-shadow:0 20px 50px rgba(255,255,255,0.08);}
+.glass-card {display:flex; flex-direction:column; align-items:center; border-radius: var(--radius); background: var(--glass); padding:22px; border:1px solid rgba(255,255,255,0.04); backdrop-filter:blur(18px) saturate(140%); transition: transform 0.5s ease, box-shadow 0.5s ease;}
+.glass-card:hover {transform:translateY(-6px) scale(1.03); box-shadow:0 25px 60px rgba(255,255,255,0.06);}
+.me-photo {width:280px; height:280px; border-radius: var(--radius); overflow:hidden; border:2px solid rgba(255,255,255,0.05); box-shadow:0 30px 70px rgba(0,0,0,0.6), 0 8px 30px rgba(255,255,255,0.03);}
+.me-photo img {width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease;}
+.me-photo:hover img {transform: scale(1.05) rotate(-1deg);}
+
+/* Sections */
+.section {margin-top:50px; padding:35px; background: var(--glass); border-radius: var(--radius); border:1px solid rgba(255,255,255,0.04); backdrop-filter: blur(10px); opacity:0; transform: translateY(40px); transition: all 0.8s ease;}
+.section.visible {opacity:1; transform:translateY(0);}
+.projects-grid {display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:25px; margin-top:25px;}
+.project-card {overflow:hidden; border-radius: var(--radius); border:1px solid rgba(255,255,255,0.04); background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)); transition: transform 0.4s ease, box-shadow 0.4s ease;}
+.project-card:hover {transform:translateY(-6px) scale(1.03); box-shadow:0 25px 70px rgba(255,255,255,0.05);}
+.project-card .thumb {position:relative; width:100%; padding-bottom:56.25%; overflow:hidden;}
+.project-card .thumb img {position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease;}
+.project-card:hover .thumb img {transform: scale(1.05);}
+.project-card .info {padding:18px;}
+.project-card h3 {margin:0 0 6px; font-size:20px;}
+.project-card p {margin:0; color:var(--muted); font-size:14px;}
+
+.contacts {display:flex; gap:25px; flex-wrap:wrap; margin-top:30px;}
+.contact-card {flex:1; min-width:240px; padding:20px; border-radius:var(--radius); background:var(--glass); border:1px solid rgba(255,255,255,0.04); backdrop-filter:blur(12px); transition: transform 0.35s ease, box-shadow 0.35s ease;}
+.contact-card:hover {transform:translateY(-5px) scale(1.03); box-shadow:0 20px 50px rgba(255,255,255,0.05);}
+.contact-card button {margin-top:12px; padding:12px 16px; border-radius:14px; border:none; background: rgba(255,255,255,0.1); color:#fff; cursor:pointer; font-weight:600; transition: all 0.35s ease;}
+.contact-card button:hover {transform: translateY(-2px) scale(1.05); box-shadow:0 15px 40px rgba(255,255,255,0.07);}
+
+footer {margin:60px auto 70px; text-align:center; color:#777; font-size:13px;}
+@media(max-width:980px) {.hero {grid-template-columns:1fr;} .me-photo{width:100%; height:260px;}}
+.bg-decor {position:fixed; right:-15%; top:15%; width:70%; height:70%; pointer-events:none; z-index:0; opacity:0.04; mix-blend-mode:screen; background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 100%); transform:rotate(-12deg); filter:blur(90px); border-radius:50%;}
+</style>
+</head>
+<body>
+<div class="bg-decor" aria-hidden="true"></div>
+<div class="wrap">
+<header class="topbar">
+<div class="inner"><div class="brand"><div class="logo"><img src="logo.png" alt="logo"></div><div class="title">MrBogdanDev</div></div></div>
+</header>
+<section class="hero">
+<div class="card hero-left"> <h1>MrBogdanDev</h1> <div class="subtitle">Python программист • 13 лет</div> <p class="tagline">Сейчас работаю над проектом <strong>CrowMRKT</strong> — Telegram App.</p> <a href="#projects" class="btn">Мой проект</a> <a href="#contacts" class="btn">Связаться</a> </div>
+<aside class="glass-card card"><div class="me-photo"><img src="me.jpg" alt="Фото MrBogdanDev"></div></aside>
+</section>
+<section id="projects" class="section"> <h2>Проект</h2> <div class="projects-grid"><article class="project-card"><div class="thumb"><img src="crowmrkt.jpg" alt="CrowMRKT"></div><div class="info"><h3>CrowMRKT</h3><p>Telegram App — мой текущий проект</p></div></article></div></section>
+<section id="contacts" class="section"> <h2>Контакты</h2> <div class="contacts"><div class="contact-card"><div style="font-weight:700">Telegram</div><div style="color:var(--muted)">@bogdandevOff</div><div style="margin-top:10px"><button class="btn" onclick="navigator.clipboard.writeText('@bogdandevOff').then(()=>alert('Скопировано'))">Скопировать ник</button></div></div></div></section>
+<footer><div>© 2025 MrBogdanDev — Все права защищены</div><div style="font-size:11px;color:#999">CrowMRKT — Telegram App</div></footer>
+</div>
+<script>
+// Появление элементов при скролле
+const revealElements = document.querySelectorAll('.card, .section');
+function revealOnScroll() {
+  const windowHeight = window.innerHeight;
+  revealElements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if(top < windowHeight - 100){ el.classList.add('visible'); }
+  });
+}
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+</script>
+</body>
+</html>
