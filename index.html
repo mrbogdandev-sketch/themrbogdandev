@@ -17,6 +17,93 @@
 body {background: var(--bg); color: var(--accent); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden;}
 .wrap {width: 90%; max-width: 1200px; margin: 0 auto; position: relative; z-index:1;}
 
+/* Анимированный фон */
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.15;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(45deg, #45aaf2, #a55eea);
+  top: 60%;
+  right: 10%;
+  animation-delay: -2s;
+}
+
+.orb-3 {
+  width: 350px;
+  height: 350px;
+  background: linear-gradient(45deg, #26de81, #fed330);
+  bottom: 10%;
+  left: 20%;
+  animation-delay: -4s;
+}
+
+.orb-4 {
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(45deg, #fd9644, #eb3b5a);
+  top: 20%;
+  right: 20%;
+  animation-delay: -6s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+.grid-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 0;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
 /* Topbar */
 .topbar {position: fixed; top: 12px; left:0; right:0; display: flex; justify-content:center; pointer-events:none; z-index:999;}
 .topbar .inner {pointer-events:all; width: 90%; max-width: 1200px; background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border-radius: var(--radius); padding: 12px 20px; display: flex; align-items:center; justify-content: space-between; backdrop-filter: blur(14px); border:1px solid rgba(255,255,255,0.05); box-shadow:0 8px 30px rgba(255,255,255,0.03); transition: all 0.4s ease;}
@@ -65,18 +152,69 @@ body {background: var(--bg); color: var(--accent); font-family: 'Inter', sans-se
 
 footer {margin:60px auto 70px; text-align:center; color:#777; font-size:13px;}
 @media(max-width:980px) {.hero {grid-template-columns:1fr;} .me-photo{width:100%; height:260px;}}
-.bg-decor {position:fixed; right:-15%; top:15%; width:70%; height:70%; pointer-events:none; z-index:0; opacity:0.04; mix-blend-mode:screen; background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 100%); transform:rotate(-12deg); filter:blur(90px); border-radius:50%;}
+
+/* Плавающие частицы */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  animation: particleFloat 6s linear infinite;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
 </style>
 </head>
 <body>
-<div class="bg-decor" aria-hidden="true"></div>
+<!-- Анимированный фон -->
+<div class="animated-bg">
+  <div class="gradient-orb orb-1"></div>
+  <div class="gradient-orb orb-2"></div>
+  <div class="gradient-orb orb-3"></div>
+  <div class="gradient-orb orb-4"></div>
+  <div class="grid-pattern"></div>
+</div>
+
+<!-- Плавающие частицы -->
+<div class="particles" id="particles"></div>
+
 <div class="wrap">
 <header class="topbar">
 <div class="inner"><div class="brand"><div class="logo"><img src="logo.png" alt="logo"></div><div class="title">MrBogdanDev</div></div></div>
 </header>
 <section class="hero">
 <div class="card hero-left"> <h1>MrBogdanDev</h1> <div class="subtitle">Python программист • 13 лет</div> <p class="tagline">Сейчас работаю над проектом <strong>CrowMRKT</strong> — Telegram App.</p> <a href="#projects" class="btn">Мои проекты</a> <a href="#contacts" class="btn">Связаться</a> </div>
-<aside class="glass-card card"><div class="me-photo"><img src="me.jpg" alt="Фото MrBogdanDev"></div></aside>
+<aside class="glass-card card">
+  <div class="me-photo">
+    <img src="me.jpg" alt="Фото MrBogdanDev">
+  </div>
+</aside>
 </section>
 <section id="projects" class="section"> 
   <h2>Мои проекты</h2> 
@@ -128,6 +266,28 @@ footer {margin:60px auto 70px; text-align:center; color:#777; font-size:13px;}
 </footer>
 </div>
 <script>
+// Создание плавающих частиц
+function createParticles() {
+  const particlesContainer = document.getElementById('particles');
+  const particleCount = 30;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    // Случайная позиция и задержка анимации
+    const left = Math.random() * 100;
+    const delay = Math.random() * 6;
+    const duration = 6 + Math.random() * 4;
+    
+    particle.style.left = `${left}%`;
+    particle.style.animationDelay = `${delay}s`;
+    particle.style.animationDuration = `${duration}s`;
+    
+    particlesContainer.appendChild(particle);
+  }
+}
+
 // Появление элементов при скролле
 const revealElements = document.querySelectorAll('.card, .section');
 function revealOnScroll() {
@@ -137,8 +297,14 @@ function revealOnScroll() {
     if(top < windowHeight - 100){ el.classList.add('visible'); }
   });
 }
+
+// Инициализация
+window.addEventListener('load', () => {
+  createParticles();
+  revealOnScroll();
+});
+
 window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('load', revealOnScroll);
 </script>
 </body>
 </html>
