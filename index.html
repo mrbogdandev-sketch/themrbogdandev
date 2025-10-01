@@ -6,305 +6,686 @@
 <title>MrBogdanDev — Портфолио</title>
 <style>
 :root {
-  --bg: #000;
-  --accent: #fff;
-  --muted: #bfbfbf;
-  --glass: rgba(255,255,255,0.07);
-  --radius: 22px;
-  --transition-fast: 0.35s;
+  --primary: #6366F1;
+  --primary-dark: #4F46E5;
+  --secondary: #10B981;
+  --accent: #F59E0B;
+  --bg: #0F0F1A;
+  --surface: #1A1B2F;
+  --surface-light: #252642;
+  --text: #FFFFFF;
+  --text-muted: #94A3B8;
+  --border: rgba(255,255,255,0.1);
+  --radius: 24px;
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
-* {margin:0; padding:0; box-sizing:border-box;}
-body {background: var(--bg); color: var(--accent); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden;}
-.wrap {width: 90%; max-width: 1200px; margin: 0 auto; position: relative; z-index:1;}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.wrap {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
 
 /* Анимированный фон */
-.animated-bg {
+.background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: 1;
   overflow: hidden;
 }
 
-.gradient-orb {
+.gradient-sphere {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
+  filter: blur(80px);
   opacity: 0.15;
-  animation: float 8s ease-in-out infinite;
+  animation: float 12s ease-in-out infinite;
 }
 
-.orb-1 {
-  width: 400px;
-  height: 400px;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-  top: 10%;
-  left: 5%;
+.sphere-1 {
+  width: 600px;
+  height: 600px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  top: -200px;
+  left: -100px;
   animation-delay: 0s;
 }
 
-.orb-2 {
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(45deg, #45aaf2, #a55eea);
-  top: 60%;
-  right: 10%;
-  animation-delay: -2s;
-}
-
-.orb-3 {
-  width: 350px;
-  height: 350px;
-  background: linear-gradient(45deg, #26de81, #fed330);
-  bottom: 10%;
-  left: 20%;
+.sphere-2 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, var(--accent), #EC4899);
+  bottom: -150px;
+  right: -100px;
   animation-delay: -4s;
 }
 
-.orb-4 {
-  width: 250px;
-  height: 250px;
-  background: linear-gradient(45deg, #fd9644, #eb3b5a);
-  top: 20%;
-  right: 20%;
-  animation-delay: -6s;
+.sphere-3 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  top: 50%;
+  left: 60%;
+  animation-delay: -8s;
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-  }
-}
-
-.grid-pattern {
-  position: fixed;
+.grid-lines {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  z-index: 0;
-  animation: gridMove 20s linear infinite;
+    linear-gradient(90deg, var(--border) 1px, transparent 1px),
+    linear-gradient(180deg, var(--border) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(circle at center, black, transparent 70%);
 }
 
-@keyframes gridMove {
-  0% {
-    transform: translate(0, 0);
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
   }
-  100% {
-    transform: translate(50px, 50px);
+  33% {
+    transform: translateY(-30px) scale(1.05);
+  }
+  66% {
+    transform: translateY(20px) scale(0.95);
   }
 }
 
-/* Topbar */
-.topbar {position: fixed; top: 12px; left:0; right:0; display: flex; justify-content:center; pointer-events:none; z-index:999;}
-.topbar .inner {pointer-events:all; width: 90%; max-width: 1200px; background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border-radius: var(--radius); padding: 12px 20px; display: flex; align-items:center; justify-content: space-between; backdrop-filter: blur(14px); border:1px solid rgba(255,255,255,0.05); box-shadow:0 8px 30px rgba(255,255,255,0.03); transition: all 0.4s ease;}
-.brand {display:flex; align-items:center; gap:12px;}
-.brand .logo {width:50px; height:50px; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.05); background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.06)); display:flex; justify-content:center; align-items:center; transition: all 0.3s ease;}
-.brand .logo img {width:100%; height:100%; object-fit:cover;}
-.brand .title {font-weight:800; letter-spacing:1px; font-size:18px;}
-.brand .logo:hover {transform: rotate(-5deg) scale(1.05);}
-
-/* Hero */
-.hero {margin-top:110px; display:grid; grid-template-columns:1fr 420px; gap:40px; align-items:center;}
-.hero-left h1 {font-size: 56px; margin-bottom:12px; letter-spacing:1.2px;}
-.hero-left .subtitle {color:var(--muted); font-size:20px; margin-bottom:22px;}
-.tagline {font-size:16px; color:#d7d7d7; margin-bottom:25px; line-height:1.6;}
-.btn {background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); padding:14px 20px; border-radius:16px; border:1px solid rgba(255,255,255,0.05); font-weight:600; text-decoration:none; color:var(--accent); display:inline-flex; align-items:center; gap:10px; transition: all 0.35s ease;}
-.btn:hover {transform:translateY(-4px) scale(1.05); box-shadow:0 20px 50px rgba(255,255,255,0.08);}
-.glass-card {display:flex; flex-direction:column; align-items:center; border-radius: var(--radius); background: var(--glass); padding:22px; border:1px solid rgba(255,255,255,0.04); backdrop-filter:blur(18px) saturate(140%); transition: transform 0.5s ease, box-shadow 0.5s ease;}
-.glass-card:hover {transform:translateY(-6px) scale(1.03); box-shadow:0 25px 60px rgba(255,255,255,0.06);}
-.me-photo {width:280px; height:280px; border-radius: var(--radius); overflow:hidden; border:2px solid rgba(255,255,255,0.05); box-shadow:0 30px 70px rgba(0,0,0,0.6), 0 8px 30px rgba(255,255,255,0.03);}
-.me-photo img {width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease;}
-.me-photo:hover img {transform: scale(1.05) rotate(-1deg);}
-
-/* Sections */
-.section {margin-top:50px; padding:35px; background: var(--glass); border-radius: var(--radius); border:1px solid rgba(255,255,255,0.04); backdrop-filter: blur(10px); opacity:0; transform: translateY(40px); transition: all 0.8s ease;}
-.section.visible {opacity:1; transform:translateY(0);}
-.projects-grid {display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:25px; margin-top:25px;}
-.project-card {overflow:hidden; border-radius: var(--radius); border:1px solid rgba(255,255,255,0.04); background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)); transition: transform 0.4s ease, box-shadow 0.4s ease;}
-.project-card:hover {transform:translateY(-6px) scale(1.03); box-shadow:0 25px 70px rgba(255,255,255,0.05);}
-.project-card .thumb {position:relative; width:100%; padding-bottom:56.25%; overflow:hidden;}
-.project-card .thumb img {position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease;}
-.project-card:hover .thumb img {transform: scale(1.05);}
-.project-card .info {padding:18px;}
-.project-card h3 {margin:0 0 6px; font-size:20px;}
-.project-card p {margin:0; color:var(--muted); font-size:14px;}
-.project-buttons {display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;}
-.download-btn {background: linear-gradient(135deg, #4CD964, #34C759); color: white; border: none; padding: 10px 16px; border-radius: 12px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; font-size: 14px;}
-.download-btn:hover {transform: translateY(-2px) scale(1.05); box-shadow: 0 10px 25px rgba(76, 217, 100, 0.3);}
-.launch-btn {background: linear-gradient(135deg, #007AFF, #0056CC); color: white; border: none; padding: 10px 16px; border-radius: 12px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; font-size: 14px;}
-.launch-btn:hover {transform: translateY(-2px) scale(1.05); box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);}
-
-.contacts {display:flex; gap:25px; flex-wrap:wrap; margin-top:30px;}
-.contact-card {flex:1; min-width:240px; padding:20px; border-radius:var(--radius); background:var(--glass); border:1px solid rgba(255,255,255,0.04); backdrop-filter:blur(12px); transition: transform 0.35s ease, box-shadow 0.35s ease;}
-.contact-card:hover {transform:translateY(-5px) scale(1.03); box-shadow:0 20px 50px rgba(255,255,255,0.05);}
-.contact-card button {margin-top:12px; padding:12px 16px; border-radius:14px; border:none; background: rgba(255,255,255,0.1); color:#fff; cursor:pointer; font-weight:600; transition: all 0.35s ease;}
-.contact-card button:hover {transform: translateY(-2px) scale(1.05); box-shadow:0 15px 40px rgba(255,255,255,0.07);}
-
-footer {margin:60px auto 70px; text-align:center; color:#777; font-size:13px;}
-@media(max-width:980px) {.hero {grid-template-columns:1fr;} .me-photo{width:100%; height:260px;}}
-
-/* Плавающие частицы */
-.particles {
+/* Навигация */
+.navbar {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 400px;
+  background: rgba(26, 27, 47, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 12px 24px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  font-weight: 700;
+  font-size: 18px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--text);
+}
+
+/* Герой секция */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 100px 0;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-text h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--text), var(--text-muted));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-text .subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.highlight {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 16px 32px;
+  border-radius: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.hero-visual {
+  position: relative;
+}
+
+.profile-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+}
+
+.profile-image {
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.profile-image img {
   width: 100%;
   height: 100%;
-  z-index: 0;
-  pointer-events: none;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 50%;
-  animation: particleFloat 6s linear infinite;
+.profile-image:hover img {
+  transform: scale(1.05);
 }
 
-@keyframes particleFloat {
-  0% {
-    transform: translateY(100vh) rotate(0deg);
-    opacity: 0;
+.profile-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.stat {
+  text-align: center;
+  padding: 16px;
+  background: var(--surface-light);
+  border-radius: 16px;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Секции */
+.section {
+  margin: 100px 0;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--text), var(--text-muted));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Проекты */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.project-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.1);
+}
+
+.project-content {
+  padding: 24px;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.project-description {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.project-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-small {
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 12px;
+}
+
+/* Контакты */
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.contact-card {
+  background: var(--surface);
+  padding: 32px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+}
+
+.contact-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 24px;
+}
+
+.contact-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.contact-value {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+/* Футер */
+.footer {
+  text-align: center;
+  padding: 60px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 100px;
+}
+
+.footer-text {
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+/* Адаптивность */
+@media (max-width: 968px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
-  10% {
-    opacity: 1;
+  
+  .hero-text h1 {
+    font-size: 3rem;
   }
-  90% {
-    opacity: 1;
+  
+  .hero-buttons {
+    justify-content: center;
   }
-  100% {
-    transform: translateY(-100px) rotate(360deg);
-    opacity: 0;
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+  
+  .nav-links {
+    gap: 15px;
+  }
+  
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .profile-stats {
+    grid-template-columns: 1fr;
   }
 }
 </style>
 </head>
 <body>
 <!-- Анимированный фон -->
-<div class="animated-bg">
-  <div class="gradient-orb orb-1"></div>
-  <div class="gradient-orb orb-2"></div>
-  <div class="gradient-orb orb-3"></div>
-  <div class="gradient-orb orb-4"></div>
-  <div class="grid-pattern"></div>
+<div class="background">
+  <div class="gradient-sphere sphere-1"></div>
+  <div class="gradient-sphere sphere-2"></div>
+  <div class="gradient-sphere sphere-3"></div>
+  <div class="grid-lines"></div>
 </div>
 
-<!-- Плавающие частицы -->
-<div class="particles" id="particles"></div>
+<!-- Навигация -->
+<nav class="navbar">
+  <div class="nav-brand">MrBogdanDev</div>
+  <div class="nav-links">
+    <a href="#projects" class="nav-link">Проекты</a>
+    <a href="#contacts" class="nav-link">Контакты</a>
+  </div>
+</nav>
 
 <div class="wrap">
-<header class="topbar">
-<div class="inner"><div class="brand"><div class="logo"><img src="logo.png" alt="logo"></div><div class="title">MrBogdanDev</div></div></div>
-</header>
-<section class="hero">
-<div class="card hero-left"> <h1>MrBogdanDev</h1> <div class="subtitle">Python программист • 13 лет</div> <p class="tagline">Сейчас работаю над проектом <strong>CrowMRKT</strong> — Telegram App.</p> <a href="#projects" class="btn">Мои проекты</a> <a href="#contacts" class="btn">Связаться</a> </div>
-<aside class="glass-card card">
-  <div class="me-photo">
-    <img src="me.jpg" alt="Фото MrBogdanDev">
-  </div>
-</aside>
-</section>
-<section id="projects" class="section"> 
-  <h2>Мои проекты</h2> 
-  <div class="projects-grid">
-    <article class="project-card">
-      <div class="thumb"><img src="crowmrkt.jpg" alt="CrowMRKT"></div>
-      <div class="info">
-        <h3>CrowMRKT</h3>
-        <p>Telegram App — мой текущий проект</p>
-        <div class="project-buttons">
-          <a href="https://t.me/crowmrktbot" target="_blank" class="launch-btn">
-            🔎 Запустить
+  <!-- Герой секция -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Python Разработчик & UI/UX Дизайнер</h1>
+        <p class="subtitle">
+          13 лет • Создаю инновационные проекты с фокусом на 
+          <span class="highlight">пользовательский опыт</span> и 
+          <span class="highlight">современные технологии</span>
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">
+            🚀 Мои проекты
+          </a>
+          <a href="#contacts" class="btn btn-secondary">
+            📞 Связаться
           </a>
         </div>
       </div>
-    </article>
-    
-    <article class="project-card">
-      <div class="thumb"><img src="Calculator.png" alt="Calculator Game"></div>
-      <div class="info">
-        <h3>Calculator Game</h3>
-        <p>Математическая игра на Python с интерфейсом калькулятора</p>
-        <div class="project-buttons">
-          <a href="Calculator.zip" class="download-btn" download>
-            📥 Скачать игру
-          </a>
+      
+      <div class="hero-visual">
+        <div class="profile-card">
+          <div class="profile-image">
+            <img src="me.jpg" alt="MrBogdanDev">
+          </div>
+          <div class="profile-stats">
+            <div class="stat">
+              <span class="stat-number">2+</span>
+              <span class="stat-label">Года опыта</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">10+</span>
+              <span class="stat-label">Проектов</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Качество</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">13</span>
+              <span class="stat-label">Возраст</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section id="contacts" class="section"> 
-  <h2>Контакты</h2> 
-  <div class="contacts">
-    <div class="contact-card">
-      <div style="font-weight:700">Telegram</div>
-      <div style="color:var(--muted)">@bogdandevOff</div>
-      <div style="margin-top:10px">
-        <button class="btn" onclick="navigator.clipboard.writeText('@bogdandevOff').then(()=>alert('Скопировано'))">Скопировать ник</button>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div>© 2025 MrBogdanDev — Все права защищены</div>
-  <div style="font-size:11px;color:#999">CrowMRKT — Telegram App | Calculator Game — Python</div>
-</footer>
+  <!-- Проекты -->
+  <section id="projects" class="section">
+    <div class="section-header">
+      <h2 class="section-title">Мои Проекты</h2>
+      <p class="section-subtitle">Инновационные решения, сочетающие передовые технологии и элегантный дизайн</p>
+    </div>
+    
+    <div class="projects-grid">
+      <!-- Проект 1 -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="crowmrkt.jpg" alt="CrowMRKT">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">CrowMRKT</h3>
+          <p class="project-description">
+            Продвинутое Telegram приложение с AI-ассистентом, современным интерфейсом 
+            и мощной функциональностью для эффективной работы.
+          </p>
+          <div class="project-actions">
+            <a href="https://t.me/crowmrktbot" target="_blank" class="btn btn-primary btn-small">
+              🔎 Запустить
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Проект 2 -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="Calculator.png" alt="Calculator Game">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Calculator Game</h3>
+          <p class="project-description">
+            Уникальная математическая игра с интерфейсом премиум-калькулятора. 
+            Развивает логическое мышление через увлекательный геймплей.
+          </p>
+          <div class="project-actions">
+            <a href="Calculator.zip" class="btn btn-secondary btn-small" download>
+              📥 Скачать
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contacts" class="section">
+    <div class="section-header">
+      <h2 class="section-title">Свяжитесь Со Мной</h2>
+      <p class="section-subtitle">Готов обсудить новые проекты и возможности сотрудничества</p>
+    </div>
+    
+    <div class="contacts-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📱</div>
+        <h3 class="contact-title">Telegram</h3>
+        <p class="contact-value">@bogdandevOff</p>
+        <button class="btn btn-primary btn-small" onclick="navigator.clipboard.writeText('@bogdandevOff').then(()=>alert('Ник скопирован!'))">
+          Скопировать ник
+        </button>
+      </div>
+      
+      <div class="contact-card">
+        <div class="contact-icon">💼</div>
+        <h3 class="contact-title">Проекты</h3>
+        <p class="contact-value">Доступны для сотрудничества</p>
+        <a href="#projects" class="btn btn-secondary btn-small">
+          Смотреть работы
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <p class="footer-text">© 2025 MrBogdanDev. Все права защищены.</p>
+    <p class="footer-text">Создано с ❤️ и современными технологиями</p>
+  </footer>
 </div>
+
 <script>
-// Создание плавающих частиц
-function createParticles() {
-  const particlesContainer = document.getElementById('particles');
-  const particleCount = 30;
-  
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    
-    // Случайная позиция и задержка анимации
-    const left = Math.random() * 100;
-    const delay = Math.random() * 6;
-    const duration = 6 + Math.random() * 4;
-    
-    particle.style.left = `${left}%`;
-    particle.style.animationDelay = `${delay}s`;
-    particle.style.animationDuration = `${duration}s`;
-    
-    particlesContainer.appendChild(particle);
-  }
-}
+// Анимация появления элементов
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
 
-// Появление элементов при скролле
-const revealElements = document.querySelectorAll('.card, .section');
-function revealOnScroll() {
-  const windowHeight = window.innerHeight;
-  revealElements.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if(top < windowHeight - 100){ el.classList.add('visible'); }
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
   });
-}
+}, observerOptions);
 
-// Инициализация
-window.addEventListener('load', () => {
-  createParticles();
-  revealOnScroll();
+// Наблюдаем за секциями
+document.querySelectorAll('.section').forEach(section => {
+  observer.observe(section);
 });
 
-window.addEventListener('scroll', revealOnScroll);
+// Плавная прокрутка для навигации
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Инициализация при загрузке
+window.addEventListener('load', () => {
+  document.querySelectorAll('.section').forEach(section => {
+    if (section.getBoundingClientRect().top < window.innerHeight * 0.8) {
+      section.classList.add('visible');
+    }
+  });
+});
 </script>
 </body>
 </html>
