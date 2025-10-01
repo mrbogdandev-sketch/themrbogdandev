@@ -51,9 +51,11 @@ body {background: var(--bg); color: var(--accent); font-family: 'Inter', sans-se
 .project-card .info {padding:18px;}
 .project-card h3 {margin:0 0 6px; font-size:20px;}
 .project-card p {margin:0; color:var(--muted); font-size:14px;}
-.project-buttons {display: flex; gap: 10px; margin-top: 12px;}
+.project-buttons {display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;}
 .download-btn {background: linear-gradient(135deg, #4CD964, #34C759); color: white; border: none; padding: 10px 16px; border-radius: 12px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; font-size: 14px;}
 .download-btn:hover {transform: translateY(-2px) scale(1.05); box-shadow: 0 10px 25px rgba(76, 217, 100, 0.3);}
+.launch-btn {background: linear-gradient(135deg, #007AFF, #0056CC); color: white; border: none; padding: 10px 16px; border-radius: 12px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; font-size: 14px;}
+.launch-btn:hover {transform: translateY(-2px) scale(1.05); box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);}
 
 .contacts {display:flex; gap:25px; flex-wrap:wrap; margin-top:30px;}
 .contact-card {flex:1; min-width:240px; padding:20px; border-radius:var(--radius); background:var(--glass); border:1px solid rgba(255,255,255,0.04); backdrop-filter:blur(12px); transition: transform 0.35s ease, box-shadow 0.35s ease;}
@@ -84,6 +86,11 @@ footer {margin:60px auto 70px; text-align:center; color:#777; font-size:13px;}
       <div class="info">
         <h3>CrowMRKT</h3>
         <p>Telegram App — мой текущий проект</p>
+        <div class="project-buttons">
+          <a href="https://t.me/crowmrktbot" target="_blank" class="launch-btn">
+            🔎 Запустить
+          </a>
+        </div>
       </div>
     </article>
     
