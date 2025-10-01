@@ -51,6 +51,9 @@ body {background: var(--bg); color: var(--accent); font-family: 'Inter', sans-se
 .project-card .info {padding:18px;}
 .project-card h3 {margin:0 0 6px; font-size:20px;}
 .project-card p {margin:0; color:var(--muted); font-size:14px;}
+.project-buttons {display: flex; gap: 10px; margin-top: 12px;}
+.download-btn {background: linear-gradient(135deg, #4CD964, #34C759); color: white; border: none; padding: 10px 16px; border-radius: 12px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; font-size: 14px;}
+.download-btn:hover {transform: translateY(-2px) scale(1.05); box-shadow: 0 10px 25px rgba(76, 217, 100, 0.3);}
 
 .contacts {display:flex; gap:25px; flex-wrap:wrap; margin-top:30px;}
 .contact-card {flex:1; min-width:240px; padding:20px; border-radius:var(--radius); background:var(--glass); border:1px solid rgba(255,255,255,0.04); backdrop-filter:blur(12px); transition: transform 0.35s ease, box-shadow 0.35s ease;}
@@ -70,12 +73,52 @@ footer {margin:60px auto 70px; text-align:center; color:#777; font-size:13px;}
 <div class="inner"><div class="brand"><div class="logo"><img src="logo.png" alt="logo"></div><div class="title">MrBogdanDev</div></div></div>
 </header>
 <section class="hero">
-<div class="card hero-left"> <h1>MrBogdanDev</h1> <div class="subtitle">Python программист • 13 лет</div> <p class="tagline">Сейчас работаю над проектом <strong>CrowMRKT</strong> — Telegram App.</p> <a href="#projects" class="btn">Мой проект</a> <a href="#contacts" class="btn">Связаться</a> </div>
+<div class="card hero-left"> <h1>MrBogdanDev</h1> <div class="subtitle">Python программист • 13 лет</div> <p class="tagline">Сейчас работаю над проектом <strong>CrowMRKT</strong> — Telegram App.</p> <a href="#projects" class="btn">Мои проекты</a> <a href="#contacts" class="btn">Связаться</a> </div>
 <aside class="glass-card card"><div class="me-photo"><img src="me.jpg" alt="Фото MrBogdanDev"></div></aside>
 </section>
-<section id="projects" class="section"> <h2>Проект</h2> <div class="projects-grid"><article class="project-card"><div class="thumb"><img src="crowmrkt.jpg" alt="CrowMRKT"></div><div class="info"><h3>CrowMRKT</h3><p>Telegram App — мой текущий проект</p></div></article></div></section>
-<section id="contacts" class="section"> <h2>Контакты</h2> <div class="contacts"><div class="contact-card"><div style="font-weight:700">Telegram</div><div style="color:var(--muted)">@bogdandevOff</div><div style="margin-top:10px"><button class="btn" onclick="navigator.clipboard.writeText('@bogdandevOff').then(()=>alert('Скопировано'))">Скопировать ник</button></div></div></div></section>
-<footer><div>© 2025 MrBogdanDev — Все права защищены</div><div style="font-size:11px;color:#999">CrowMRKT — Telegram App</div></footer>
+<section id="projects" class="section"> 
+  <h2>Мои проекты</h2> 
+  <div class="projects-grid">
+    <article class="project-card">
+      <div class="thumb"><img src="crowmrkt.jpg" alt="CrowMRKT"></div>
+      <div class="info">
+        <h3>CrowMRKT</h3>
+        <p>Telegram App — мой текущий проект</p>
+      </div>
+    </article>
+    
+    <article class="project-card">
+      <div class="thumb"><img src="Calculator.png" alt="Calculator Game"></div>
+      <div class="info">
+        <h3>Calculator Game</h3>
+        <p>Математическая игра на Python с интерфейсом калькулятора</p>
+        <div class="project-buttons">
+          <a href="Calculator.zip" class="download-btn" download>
+            📥 Скачать игру
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="contacts" class="section"> 
+  <h2>Контакты</h2> 
+  <div class="contacts">
+    <div class="contact-card">
+      <div style="font-weight:700">Telegram</div>
+      <div style="color:var(--muted)">@bogdandevOff</div>
+      <div style="margin-top:10px">
+        <button class="btn" onclick="navigator.clipboard.writeText('@bogdandevOff').then(()=>alert('Скопировано'))">Скопировать ник</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2025 MrBogdanDev — Все права защищены</div>
+  <div style="font-size:11px;color:#999">CrowMRKT — Telegram App | Calculator Game — Python</div>
+</footer>
 </div>
 <script>
 // Появление элементов при скролле
