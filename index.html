@@ -3,19 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎂 С Днем Рождения! MrBogdanDev</title>
+<title>🎂 С Днем Рождения! MrBogdanDev - 13 лет!</title>
 <style>
 :root {
-  --rainbow-1: #FF6B6B;
-  --rainbow-2: #4ECDC4;
-  --rainbow-3: #45B7D1;
-  --rainbow-4: #96CEB4;
-  --rainbow-5: #FFEAA7;
-  --rainbow-6: #DDA0DD;
-  --rainbow-7: #98D8C8;
-  --bg: #000;
+  --primary: #FF6B6B;
+  --secondary: #4ECDC4;
+  --accent: #FFD93D;
+  --purple: #6C5CE7;
+  --bg: #0F0F23;
+  --surface: #1A1A2E;
   --text: #FFFFFF;
-  --text-muted: rgba(255,255,255,0.8);
+  --text-muted: #A0A0B0;
 }
 
 * {
@@ -27,10 +25,9 @@
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="18">🎈</text></svg>'), auto;
 }
 
 .wrap {
@@ -41,70 +38,62 @@ body {
   z-index: 2;
 }
 
-/* Психоделический фон */
-.psychedelic-bg {
+/* Стилизованный фон */
+.background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
-  background: linear-gradient(
-    45deg,
-    #ff0000, #ff8000, #ffff00, #80ff00,
-    #00ff00, #00ff80, #00ffff, #0080ff,
-    #0000ff, #8000ff, #ff00ff, #ff0080
-  );
-  background-size: 1200% 1200%;
-  animation: rainbow 10s ease infinite;
-  opacity: 0.3;
-  filter: blur(20px);
 }
 
-@keyframes rainbow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.gradient-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.15;
+  animation: float 8s ease-in-out infinite;
 }
 
-/* Конфетти */
-.confetti {
-  position: fixed;
-  width: 15px;
-  height: 15px;
-  background: var(--rainbow-1);
-  animation: confettiFall 5s linear infinite;
-  z-index: 1000;
+.sphere-1 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
 }
 
-.confetti:nth-child(2n) { background: var(--rainbow-2); }
-.confetti:nth-child(3n) { background: var(--rainbow-3); }
-.confetti:nth-child(4n) { background: var(--rainbow-4); }
-.confetti:nth-child(5n) { background: var(--rainbow-5); }
-.confetti:nth-child(6n) { background: var(--rainbow-6); }
+.sphere-2 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  bottom: -100px;
+  right: -100px;
+  animation-delay: -4s;
+}
 
-@keyframes confettiFall {
+.birthday-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  font-size: 1.2rem;
+  animation: particleFloat 6s linear infinite;
+  opacity: 0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
+}
+
+@keyframes particleFloat {
   0% {
-    transform: translateY(-100px) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-/* Плавающие шарики */
-.floating-balloon {
-  position: fixed;
-  font-size: 2rem;
-  animation: floatUp 8s ease-in-out infinite;
-  z-index: 100;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-@keyframes floatUp {
-  0%, 100% {
     transform: translateY(100vh) rotate(0deg);
     opacity: 0;
   }
@@ -128,35 +117,23 @@ body {
   transform: translateX(-50%);
   width: 95%;
   max-width: 400px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(26, 26, 46, 0.9);
   backdrop-filter: blur(20px);
-  border: 2px dashed #FFD700;
-  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
   padding: 12px 24px;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-10px); }
 }
 
 .nav-brand {
   font-weight: 700;
   font-size: 18px;
-  background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: textGlow 2s ease-in-out infinite;
-}
-
-@keyframes textGlow {
-  0%, 100% { text-shadow: 0 0 10px currentColor; }
-  50% { text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
 }
 
 .nav-links {
@@ -165,17 +142,15 @@ body {
 }
 
 .nav-link {
-  color: var(--text);
+  color: var(--text-muted);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
   transition: all 0.3s ease;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .nav-link:hover {
-  transform: scale(1.2) rotate(10deg);
-  color: #FFD700;
+  color: var(--accent);
 }
 
 /* Герой секция */
@@ -189,55 +164,23 @@ body {
 }
 
 .hero-content h1 {
-  font-size: 4.5rem;
+  font-size: 4rem;
   font-weight: 800;
   margin-bottom: 20px;
-  background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, #FFEAA7, #DDA0DD);
+  background: linear-gradient(135deg, var(--primary), var(--accent), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: rainbowText 3s ease-in-out infinite;
-  text-shadow: 0 0 30px rgba(255,255,255,0.5);
 }
 
-@keyframes rainbowText {
-  0%, 100% { filter: hue-rotate(0deg); }
-  50% { filter: hue-rotate(180deg); }
-}
-
-.birthday-text {
-  font-size: 2rem;
-  color: #FFD700;
-  margin-bottom: 30px;
-  animation: sparkle 1.5s ease-in-out infinite;
-  text-shadow: 0 0 10px #FFD700;
-}
-
-@keyframes sparkle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.1); }
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 40px;
-}
-
-.btn {
-  padding: 20px 40px;
+.birthday-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--bg);
+  padding: 10px 25px;
   border-radius: 50px;
   font-weight: 700;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 18px;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  font-size: 1.5rem;
+  margin-bottom: 30px;
   animation: pulse 2s infinite;
 }
 
@@ -246,26 +189,49 @@ body {
   50% { transform: scale(1.05); }
 }
 
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.btn {
+  padding: 16px 32px;
+  border-radius: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
 .btn-primary {
-  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-  color: white;
-  box-shadow: 0 10px 30px rgba(255,107,107,0.5);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--bg);
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
 }
 
 .btn-primary:hover {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 20px 40px rgba(255,107,107,0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(255, 107, 107, 0.4);
 }
 
 .btn-secondary {
-  background: linear-gradient(45deg, #45B7D1, #96CEB4);
-  color: white;
-  box-shadow: 0 10px 30px rgba(69,183,209,0.5);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .btn-secondary:hover {
-  transform: scale(1.1) rotate(-5deg);
-  box-shadow: 0 20px 40px rgba(69,183,209,0.7);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 /* Секции */
@@ -274,11 +240,6 @@ body {
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.8s ease;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 30px;
-  padding: 50px;
-  border: 2px dashed #FFD700;
 }
 
 .section.visible {
@@ -295,10 +256,9 @@ body {
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 16px;
-  background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: textGlow 2s ease-in-out infinite;
 }
 
 .section-subtitle {
@@ -316,25 +276,18 @@ body {
 }
 
 .project-card {
-  background: rgba(255,255,255,0.15);
-  border-radius: 25px;
+  background: var(--surface);
+  border-radius: 20px;
   overflow: hidden;
-  border: 2px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-  backdrop-filter: blur(10px);
-  animation: cardGlow 3s ease-in-out infinite;
-}
-
-@keyframes cardGlow {
-  0%, 100% { border-color: #FF6B6B; box-shadow: 0 20px 40px rgba(255,107,107,0.3); }
-  25% { border-color: #4ECDC4; box-shadow: 0 20px 40px rgba(78,205,196,0.3); }
-  50% { border-color: #45B7D1; box-shadow: 0 20px 40px rgba(69,183,209,0.3); }
-  75% { border-color: #96CEB4; box-shadow: 0 20px 40px rgba(150,206,180,0.3); }
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .project-card:hover {
-  transform: translateY(-10px) scale(1.05) rotate(2deg);
+  transform: translateY(-10px);
+  border-color: var(--accent);
+  box-shadow: 0 30px 60px rgba(255, 217, 61, 0.2);
 }
 
 .project-image {
@@ -351,7 +304,7 @@ body {
 }
 
 .project-card:hover .project-image img {
-  transform: scale(1.2) rotate(5deg);
+  transform: scale(1.1);
 }
 
 .project-content {
@@ -377,9 +330,9 @@ body {
 }
 
 .btn-small {
-  padding: 15px 25px;
-  font-size: 16px;
-  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 12px;
 }
 
 /* Контакты */
@@ -390,41 +343,33 @@ body {
 }
 
 .contact-card {
-  background: rgba(255,255,255,0.15);
+  background: var(--surface);
   padding: 32px;
-  border-radius: 25px;
-  border: 2px dashed #FFD700;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
 }
 
 .contact-card:hover {
-  transform: scale(1.05) rotate(3deg);
-  border-style: solid;
+  border-color: var(--accent);
+  transform: translateY(-5px);
 }
 
 .contact-icon {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
-  font-size: 2rem;
-  animation: iconSpin 3s linear infinite;
-}
-
-@keyframes iconSpin {
-  0% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(180deg) scale(1.1); }
-  100% { transform: rotate(360deg) scale(1); }
+  font-size: 24px;
 }
 
 .contact-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 8px;
   color: var(--text);
@@ -433,55 +378,29 @@ body {
 .contact-value {
   color: var(--text-muted);
   margin-bottom: 20px;
-  font-size: 1.1rem;
 }
 
 /* Футер */
 .footer {
   text-align: center;
   padding: 60px 0;
-  border-top: 2px dashed #FFD700;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 100px;
 }
 
 .footer-text {
   color: var(--text-muted);
   margin-bottom: 8px;
-  font-size: 1.1rem;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 3rem;
-  }
-  
-  .birthday-text {
-    font-size: 1.5rem;
-  }
-  
-  .btn {
-    padding: 15px 30px;
-    font-size: 16px;
-  }
-  
-  .section {
-    padding: 30px;
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-  }
-}
-
-/* Кнопка управления музыкой */
+/* Кнопка музыки */
 .music-control {
   position: fixed;
   bottom: 30px;
   right: 30px;
   width: 60px;
   height: 60px;
-  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -489,58 +408,79 @@ body {
   cursor: pointer;
   z-index: 1000;
   font-size: 1.5rem;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  animation: bounce 2s infinite;
-  border: 2px solid #FFD700;
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
 }
 
 .music-control:hover {
-  transform: scale(1.2) rotate(15deg);
+  transform: scale(1.1);
+  border-color: var(--text);
+}
+
+.music-control.playing {
+  animation: pulse 1s infinite;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .birthday-badge {
+    font-size: 1.2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
 <body>
-<!-- Аудио элемент -->
+<!-- Аудио -->
 <audio id="birthdayMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
-  Ваш браузер не поддерживает аудио элемент.
 </audio>
 
-<!-- Психоделический фон -->
-<div class="psychedelic-bg"></div>
+<!-- Фон -->
+<div class="background">
+  <div class="gradient-sphere sphere-1"></div>
+  <div class="gradient-sphere sphere-2"></div>
+  <div class="birthday-particles" id="particlesContainer"></div>
+</div>
 
-<!-- Конфетти -->
-<div id="confettiContainer"></div>
-
-<!-- Плавающие шарики -->
-<div id="balloonsContainer"></div>
-
-<!-- Кнопка управления музыкой -->
+<!-- Кнопка музыки -->
 <div class="music-control" id="musicControl">🎵</div>
 
 <!-- Навигация -->
 <nav class="navbar">
-  <div class="nav-brand">🎂 MrBogdanDev</div>
+  <div class="nav-brand">MrBogdanDev</div>
   <div class="nav-links">
-    <a href="#projects" class="nav-link">🎁 Проекты</a>
-    <a href="#contacts" class="nav-link">📞 Контакты</a>
+    <a href="#projects" class="nav-link">Проекты</a>
+    <a href="#contacts" class="nav-link">Контакты</a>
   </div>
 </nav>
 
 <div class="wrap">
-  <!-- Герой секция -->
+  <!-- Герой -->
   <section class="hero">
     <div class="hero-content">
-      <h1>С ДНЕМ РОЖДЕНИЯ! 🎉</h1>
-      <div class="birthday-text">
-        🎂 Сегодня мой день рождения! 🎂
+      <h1>С Днем Рождения!</h1>
+      <div class="birthday-badge">
+        🎂 Мне исполняется 13 лет! 🎂
       </div>
-      <p style="font-size: 1.3rem; margin-bottom: 30px; color: var(--text-muted);">
-        Мне исполняется 14 лет! 🥳 Отпразднуем вместе с крутыми проектами!
+      <p style="font-size: 1.3rem; color: var(--text-muted); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Сегодня особенный день! Отмечаем мой 13-й день рождения вместе с крутыми проектами
       </p>
       <div class="hero-buttons">
         <a href="#projects" class="btn btn-primary">
-          🎈 Мои подарки-проекты
+          🎁 Мои проекты
         </a>
         <a href="#contacts" class="btn btn-secondary">
           🎊 Поздравить
@@ -552,12 +492,11 @@ body {
   <!-- Проекты -->
   <section id="projects" class="section">
     <div class="section-header">
-      <h2 class="section-title">Мои Подарки 🎁</h2>
-      <p class="section-subtitle">Специальные проекты к моему дню рождения!</p>
+      <h2 class="section-title">Именинные проекты</h2>
+      <p class="section-subtitle">Специальные проекты к моему 13-летию</p>
     </div>
     
     <div class="projects-grid">
-      <!-- Проект 1 -->
       <div class="project-card">
         <div class="project-image">
           <img src="crowmrkt.jpg" alt="CrowMRKT">
@@ -565,17 +504,16 @@ body {
         <div class="project-content">
           <h3 class="project-title">CrowMRKT 🚀</h3>
           <p class="project-description">
-            Именинный Telegram бот с AI-ассистентом! Самый крутой подарок для всех пользователей!
+            Продвинутый Telegram бот с современным дизайном и AI-функциями. Мой главный проект!
           </p>
           <div class="project-actions">
             <a href="https://t.me/crowmrktbot" target="_blank" class="btn btn-primary btn-small">
-              🎯 Запустить
+              🔎 Запустить
             </a>
           </div>
         </div>
       </div>
       
-      <!-- Проект 2 -->
       <div class="project-card">
         <div class="project-image">
           <img src="Calculator.png" alt="Calculator Game">
@@ -583,11 +521,11 @@ body {
         <div class="project-content">
           <h3 class="project-title">Calculator Game 🎮</h3>
           <p class="project-description">
-            Именинная математическая игра! Развлекайтесь и развивайте логику в мой день рождения!
+            Увлекательная математическая игра с красивым интерфейсом калькулятора. Развиваю логику!
           </p>
           <div class="project-actions">
             <a href="Calculator.zip" class="btn btn-secondary btn-small" download>
-              🎁 Скачать подарок
+              📥 Скачать
             </a>
           </div>
         </div>
@@ -598,8 +536,8 @@ body {
   <!-- Контакты -->
   <section id="contacts" class="section">
     <div class="section-header">
-      <h2 class="section-title">Поздравления 🎊</h2>
-      <p class="section-subtitle">Оставь свое поздравление в Telegram!</p>
+      <h2 class="section-title">Поздравления</h2>
+      <p class="section-subtitle">Буду рад получить поздравления в Telegram!</p>
     </div>
     
     <div class="contacts-grid">
@@ -607,143 +545,125 @@ body {
         <div class="contact-icon">📱</div>
         <h3 class="contact-title">Telegram</h3>
         <p class="contact-value">@bogdandevOff</p>
-        <button class="btn btn-primary btn-small" onclick="navigator.clipboard.writeText('@bogdandevOff').then(()=>alert('🎉 Спасибо за поздравление! Ник скопирован!'))">
-          🎂 Поздравить
+        <button class="btn btn-primary btn-small" onclick="copyTelegram()">
+          🎂 Скопировать ник
         </button>
       </div>
       
       <div class="contact-card">
         <div class="contact-icon">🎁</div>
-        <h3 class="contact-title">Подарки</h3>
-        <p class="contact-value">Идей для подарков много! 🎈</p>
-        <a href="#projects" class="btn btn-secondary btn-small">
-          🎊 Мои проекты
-        </a>
+        <h3 class="contact-title">13 лет!</h3>
+        <p class="contact-value">олукрпшгщкурпгшкур</p>
+        <button class="btn btn-secondary btn-small" onclick="showBirthdayMessage()">
+          🎉 Поздравить
+        </button>
       </div>
     </div>
   </section>
 
   <!-- Футер -->
   <footer class="footer">
-    <p class="footer-text">🎉 С Днем Рождения! MrBogdanDev - 14 лет! 🎉</p>
-    <p class="footer-text">Спасибо что зашли на мой праздничный сайт! 🥳</p>
+    <p class="footer-text">© 2025 MrBogdanDev. Спасибо за поздравления с 13-летием! 🎂</p>
   </footer>
 </div>
 
 <script>
-// Создание конфетти
-function createConfetti() {
-  const container = document.getElementById('confettiContainer');
-  const confettiCount = 150;
+// Создание праздничных частиц
+function createParticles() {
+  const container = document.getElementById('particlesContainer');
+  const particles = ['🎂', '🎈', '⭐', '🎁', '🎊'];
+  const count = 15;
   
-  for (let i = 0; i < confettiCount; i++) {
-    const confetti = document.createElement('div');
-    confetti.className = 'confetti';
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.textContent = particles[Math.floor(Math.random() * particles.length)];
     
     const left = Math.random() * 100;
-    const animationDelay = Math.random() * 5;
-    const animationDuration = 3 + Math.random() * 4;
+    const delay = Math.random() * 6;
+    const duration = 4 + Math.random() * 4;
     
-    confetti.style.left = `${left}%`;
-    confetti.style.animationDelay = `${animationDelay}s`;
-    confetti.style.animationDuration = `${animationDuration}s`;
+    particle.style.left = `${left}%`;
+    particle.style.animationDelay = `${delay}s`;
+    particle.style.animationDuration = `${duration}s`;
     
-    container.appendChild(confetti);
-  }
-}
-
-// Создание шариков
-function createBalloons() {
-  const container = document.getElementById('balloonsContainer');
-  const balloonCount = 20;
-  const balloons = ['🎈', '🎈', '🎈', '🎈', '🎈', '🎈', '🎈', '🎈', '🎈', '🎈'];
-  
-  for (let i = 0; i < balloonCount; i++) {
-    const balloon = document.createElement('div');
-    balloon.className = 'floating-balloon';
-    balloon.textContent = balloons[Math.floor(Math.random() * balloons.length)];
-    
-    const left = Math.random() * 100;
-    const animationDelay = Math.random() * 8;
-    const animationDuration = 6 + Math.random() * 6;
-    
-    balloon.style.left = `${left}%`;
-    balloon.style.animationDelay = `${animationDelay}s`;
-    balloon.style.animationDuration = `${animationDuration}s`;
-    
-    container.appendChild(balloon);
+    container.appendChild(particle);
   }
 }
 
 // Управление музыкой
 const music = document.getElementById('birthdayMusic');
 const musicControl = document.getElementById('musicControl');
-let musicPlaying = false;
 
 musicControl.addEventListener('click', function() {
-  if (musicPlaying) {
+  if (music.paused) {
+    music.play().then(() => {
+      musicControl.textContent = '🔊';
+      musicControl.classList.add('playing');
+    }).catch(e => {
+      console.log('Ошибка воспроизведения:', e);
+      alert('Нажмите разрешить автовоспроизведение или запустите музыку вручную');
+    });
+  } else {
     music.pause();
     musicControl.textContent = '🎵';
-    musicPlaying = false;
-  } else {
-    music.play().catch(e => {
-      console.log('Автовоспроизведение заблокировано, нажмите еще раз');
-    });
-    musicControl.textContent = '🔊';
-    musicPlaying = true;
+    musicControl.classList.remove('playing');
   }
 });
 
-// Автозапуск музыки при взаимодействии
-document.addEventListener('click', function() {
-  if (!musicPlaying) {
+// Попытка автозапуска музыки при взаимодействии
+document.addEventListener('click', function initMusic() {
+  if (music.paused) {
     music.play().then(() => {
-      musicPlaying = true;
       musicControl.textContent = '🔊';
+      musicControl.classList.add('playing');
     }).catch(e => {
       console.log('Автовоспроизведение заблокировано');
     });
   }
-}, { once: true });
+  document.removeEventListener('click', initMusic);
+});
 
-// Анимация появления элементов
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
+// Функции для кнопок
+function copyTelegram() {
+  navigator.clipboard.writeText('@bogdandevOff').then(() => {
+    alert('🎉 Спасибо! Ник @bogdandevOff скопирован!');
+  });
+}
 
+function showBirthdayMessage() {
+  alert('🎂 Спасибо за поздравление с моим 13-летием! 🎉\nЭто очень ценно для меня! ❤️');
+}
+
+// Анимация появления секций
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
     }
   });
-}, observerOptions);
+}, { threshold: 0.1 });
 
-// Наблюдаем за секциями
 document.querySelectorAll('.section').forEach(section => {
   observer.observe(section);
 });
 
-// Плавная прокрутка для навигации
+// Плавная прокрутка
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
 });
 
-// Инициализация при загрузке
+// Инициализация
 window.addEventListener('load', () => {
-  createConfetti();
-  createBalloons();
+  createParticles();
   
+  // Показать видимые секции
   document.querySelectorAll('.section').forEach(section => {
     if (section.getBoundingClientRect().top < window.innerHeight * 0.8) {
       section.classList.add('visible');
@@ -752,29 +672,9 @@ window.addEventListener('load', () => {
   
   // Праздничное сообщение
   setTimeout(() => {
-    alert('🎉 С ДНЕМ РОЖДЕНИЯ! Спасибо что зашел на мой сайт! 🎂');
-  }, 2000);
+    console.log('🎂 С Днем Рождения! MrBogdanDev - 13 лет! 🎉');
+  }, 1000);
 });
-
-// Случайные анимации при движении мыши
-document.addEventListener('mousemove', function(e) {
-  if (Math.random() > 0.98) {
-    createConfettiParticle(e.clientX, e.clientY);
-  }
-});
-
-function createConfettiParticle(x, y) {
-  const confetti = document.createElement('div');
-  confetti.className = 'confetti';
-  confetti.style.left = `${x}px`;
-  confetti.style.top = `${y}px`;
-  confetti.style.animationDuration = `${1 + Math.random() * 2}s`;
-  document.getElementById('confettiContainer').appendChild(confetti);
-  
-  setTimeout(() => {
-    confetti.remove();
-  }, 3000);
-}
 </script>
 </body>
 </html>
